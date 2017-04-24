@@ -14,6 +14,12 @@ module TicTacToe
       get_cell(x, y).value = value
     end
 
+    def show_grid
+      grid.each do |row|
+        puts row.map { |cell| cell.value.empty? ? '_' : cell.value }.join(' ')
+      end
+    end
+
     def game_over
       return :winner if winner?
       return :draw   if draw?
@@ -24,7 +30,7 @@ module TicTacToe
       win_moves.each do |move|
         next if move.any? { |cell| cell.value.empty? }
         # Check if all cells' values are the same.
-        return true if move.all? { |cell| cell == move[0] }
+        return true if move.all? { |cell| cell.value == move[0].value }
       end
       false
     end

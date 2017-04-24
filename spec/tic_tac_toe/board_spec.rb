@@ -50,6 +50,16 @@ module TicTacToe
       end
     end
 
+    context '#show_grid' do
+      it 'shows grid values' do
+        grid_output = "_ _ _\n_ _ _\n_ _ _\n" 
+        board = Board.new
+        expect { board.show_grid }.to output(grid_output).to_stdout
+        board.set_cell(1, 1, 'X')
+        expect { board.show_grid }.to output("_ _ _\n_ X _\n_ _ _\n").to_stdout
+      end
+    end
+
     context '#game_over' do
       it 'returns :winner if #winner? returns true' do
         board = Board.new
